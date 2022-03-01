@@ -7,7 +7,7 @@ Instructions to run:
 3. Confirm the server is running on 'localhost:8000'.
 
 4. Keep the command window open and open a seperate command window.
-5. Navigate to 'your\local\path\wallapp\frontend'.
+5. Navigate to 'your\local\path\wallapp\frontend2'.
 6. Run the command 'npm start'.
 7. Confirm the server is running on 'localhost:3000'.
 
