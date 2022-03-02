@@ -6,6 +6,10 @@ import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile'
 import { withAuth0 } from '@auth0/auth0-react';
 
+// get the CSRF token info for making requests to the API
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +25,8 @@ class App extends Component {
   componentDidMount() {
     this.refreshList();
   }
-
-  refreshList = () => { //refresh the wall to find posts
+//refresh the wall to find posts
+  refreshList = () => { 
     axios
       .get("/posts/")
       .then((res) => this.setState({ postList: res.data }))
@@ -32,8 +36,8 @@ class App extends Component {
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
-
-  handleSubmit = (item) => { //as titled
+ //as titled
+  handleSubmit = (item) => {
     this.toggle();
 
     if (item.post_id) {
@@ -47,19 +51,19 @@ class App extends Component {
       .then((res) => this.refreshList());
   };
 
-  handleDelete = (item) => { //as titled
+  handleDelete = (item) => { 
     axios
       .delete(`/posts/${item.post_id}/`)
       .then((res) => this.refreshList());
   };
 
-  createItem = () => { //create post
+  createItem = () => { 
     const item = { text: ""};
 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
-  editItem = (item) => { //edit post
+  editItem = (item) => { 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
@@ -78,7 +82,7 @@ class App extends Component {
 
     const { viewCompleted } = this.state;
     const newItems = this.state.postList.filter(
-      (item) => item.completed == viewCompleted
+      (item) => item.completed === viewCompleted
     );
 
     if (!user) return newItems.map((item) => (

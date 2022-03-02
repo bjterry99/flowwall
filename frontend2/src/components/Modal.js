@@ -34,7 +34,7 @@ export default class CustomModal extends Component {
   render() {
     const { toggle, onSave } = this.props;
 
-    if (this.state.activeItem.text == "") {
+    if (this.state.activeItem.text === "") {
       return (
         <Modal isOpen={true} toggle={toggle}>
           <ModalHeader toggle={toggle}>New post</ModalHeader>
